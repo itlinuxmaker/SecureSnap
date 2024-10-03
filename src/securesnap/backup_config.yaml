@@ -1,0 +1,29 @@
+backup:
+  full_backup_interval: 7  # Number of incremental backups until the next full backup
+  compression: "bzip2"  # Selectable compression: gzip, bzip2, xz
+  backup_dir: "/backups"  # Directory where backups are stored
+  retention_time: 175  # Number of days after which all backups including folders are deleted. If false, nothing is deleted.
+  log_file: "/var/log/securesnap.log"  # Log file for backup protocols
+  mysql:
+    enabled: false  # MySQL backup is selectable (true or false)
+    user: "backup_user"  # MySQL user
+    password: "topSecret"  # MySQL password
+    databases:  # Databases to be backed up
+      - "database1"
+      - "database2"
+  destinations:
+    - path: "/etc"
+      archive: "etc_backup"
+      type: "full"  # Full backup with incremental backups
+      exclude:
+        - "/etc/hostname"
+        - "/etc/hosts"
+    - path: "/home"
+      archive: "home_backup"
+      type: "full-single"  # Only full backup without incremental backups
+      exclude:
+        - "/home/user/Downloads"
+    - path: "/srv"
+      archive: "srv_backup"
+      type: "incremental"  # Incremental Backup (directory with incremental backups) 
+      exclude: []
