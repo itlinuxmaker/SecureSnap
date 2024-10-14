@@ -33,7 +33,7 @@ To run the program, the following Python modules are installed with `apt install
 
 ```bash
 apt-get update
-apt install python3 pyyaml
+apt install python3 python3-yaml
 ```
 
 ## Usage
