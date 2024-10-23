@@ -6,7 +6,7 @@ import shutil
 
 """
 secureSnap
-Version: 1.0.1
+Version: 1.0.2
 Author: Andreas Günther, github@it-linuxmaker.com
 License: GNU General Public License v3.0 or later
 """
