@@ -206,13 +206,13 @@ def create_backup(config):
             elif backup_type == 'full-single':
                 # If full-single, always create a full backup, but without incremental backups
                 archive_name += f"full-single-{incremental_count}.tar"
-                tar_command = ["tar", "-cpf", "-", "--acls", "--xattrs", "-P", "--no-dereference"]
-                write_log(log_file, f"Perform full-single backup for {destination['archive']} with symlinks preserved.")
+                tar_command = ["tar", "-cpf", "-", "--acls", "--xattrs", "-P"]
+                write_log(log_file, f"Perform full-single backup for {destination['archive']}.")
             else:
                 # Always create a full backup if the type is "full"
                 archive_name += f"full-{incremental_count}.tar"
-                tar_command = ["tar", "-cpf", "-", "-g", snapshot_file, "--acls", "--xattrs", "-P", "--no-dereference"]
-                write_log(log_file, f"Perform full backup for {destination['archive']} and create snapshot file {snapshot_file} with symlinks preserved.")
+                tar_command = ["tar", "-cpf", "-", "--acls", "--xattrs", "-P"]
+                write_log(log_file, f"Perform full backup for {destination['archive']} and create snapshot file {snapshot_file}.")
 
 
             # Create exclude options
