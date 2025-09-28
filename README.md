@@ -33,10 +33,11 @@ To run the program, the following Python modules are installed with `apt install
 
 ```bash
 apt-get update
-apt install python3 python3-yaml
+apt install python3 python3-yaml git
 ```
 
 ## Usage
+### Manual installation
 Clone the project onto your Linux system  
 ```Bash
 git clone https://github.com/itlinuxmaker/SecureSnap.git  
@@ -47,31 +48,51 @@ Change to the project directory and follow these steps:
  cd SecureSnap/src/securesnap  
 
 ```
-2. Create the configuration directory:
+2. Create the configuration directory as root:
  ```Bash  
- mkdir -p /etc/securesnap  
+ mkdir -p /opt/securesnap
+ mkdir -p /opt/securesnap/etc  
  ```
 3. Copy the configuration and script files to their locations:
 ```
- cp backup_config.yaml /etc/securesnap/
- cp securesnap.py /usr/local/bin/
+ cp backup_config.yaml /opt/securesnap/etc/
+ cp securesnap.py /opt/securesnap/
  ```
 4. Edit the YAML configuration file to fit your backup requirements with your preferred text editor (vi, emacs, nano, etc.):
 ```
-vi /etc/securesnap/backup_config.yaml 
+vi /opt/securesnap/etc/backup_config.yaml 
 ```
 5. Run the backup script:
 ```
-  python3 /usr/local/bin/securesnap.py
+  python3 /opt/securesnap/securesnap.py
   ```
-6. Set up a cron job to automate the backup process (optional):
+6. Set up a cron job as root to automate the backup process (optional):
 ```    
-sudo crontab -e
+crontab -e
 ```
 Add the following line to run the backup every Friday at 21:00 as example:
 ```
-00 21 * * Fri /usr/local/bin/securesnap.sh
+00 21 * * Fri python3 /opt/securesnap/securesnap.py
 ```
+### Installation with setup script
+1. Save the setup.sh in the same folder where you are working.
+2. Make it executable:
+```
+chmod a+x setup.sh
+```
+3. Run it as root.
+```
+./setup.sh
+```
+
+4. Then continue with step 4 under "Manual Installation".
+
+### Uninstall SecureSnap
+To uninstall SecureSnap, use:
+```
+./setup.sh --uninstall
+```
+
 ## License
 The program is licensed under the GNU General Public License v3.0 or later in 2024.
 
