@@ -6,13 +6,13 @@ import shutil
 
 """
 secureSnap
-Version: 1.0.2
+Version: 1.0.3
 Author: Andreas Günther, github@it-linuxmaker.com
 License: GNU General Public License v3.0 or later
 """
 
-# Path to the configuration file in /etc/securesnap/
-CONFIG_FILE = '/etc/securesnap/backup_config.yaml'
+# Path to the configuration file in /opt/securesnap/etc/
+CONFIG_FILE = '/opt/securesnap/etc/backup_config.yaml'
 
 # Function to load the YAML configuration
 def load_config(config_file=CONFIG_FILE):
